@@ -1,3 +1,5 @@
+//új ver. ubuntu
+
 package bankszamla;
 
 import java.util.ArrayList;
@@ -45,8 +47,6 @@ public class BankszamlaClass {
         }else{
             return false;
         }
-        
-        
     }
 
     public boolean paymentIn(int b) {
