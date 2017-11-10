@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankszamlaClass {
-  
+
     private final int cost = 123;
     private int allCost;
     private int egyenleg;
@@ -16,13 +16,12 @@ public class BankszamlaClass {
 
     public void getPeople() {
         for (int i = 0; i < people.size(); i++) {
-            System.out.print(people.get(i) + ",");
+            System.out.print(people.get(i) + ", ");
         }
         System.out.println("");
-
     }
 
-    public void addPeople(String people) throws Exception{
+    public void addPeople(String people) throws Exception {
         int i = this.people.size();
         if (i < 3) {
             this.people.add(i, people);
@@ -32,38 +31,40 @@ public class BankszamlaClass {
 
     }
 
-    public boolean removePeople(String p) {
+    public void removePeople(String p) throws Exception{
         int i = 0;
-        if(people.size() > 1){
+        if (people.size() > 1) {
+
+            while (!people.get(i).equals(p)) {
+                i++;
+            }
+            people.remove(i);
             
-        
-        while (people.get(i) != p) {
-            i++;
-        }
-        people.remove(i);
-        return true;
-        }else{
-            return false;
+        } else {
+            throw new Exception("Nem távolítható el a "+ p + " nevű meghatalmazott. "
+                    + "Legalább egy meghatalmazottnak lennie kell.");
         }
     }
 
-    public boolean paymentIn(int b) {
-        if (!people.isEmpty() && b > 0) {
-            egyenleg = egyenleg + b;
+    public void paymentIn(int befizetes) throws Exception {
+        if (!people.isEmpty() && befizetes > 0) {
+            egyenleg = egyenleg + befizetes;
             egyenleg = egyenleg - cost;
             allCost += cost;
-            return true;
+        } else {
+            throw new Exception("Nem adható meg negatív befizetés vagy nincs meghatalmazott hozzárendelve.");
         }
-        return false;
+
     }
 
-    public boolean paymentOut(int k) {
+    public void paymentOut(int k) throws Exception {
         if (k > 0 && egyenleg - k > 0) {
             egyenleg = egyenleg - k;
             allCost += cost;
-            return true;
+
+        } else {
+            throw new Exception("Nem adható meg negatív kifizetés vagy nincs meghatalmazott hozzárendelve.");
         }
-        return false;
     }
 
     public int getCost() {
