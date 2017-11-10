@@ -1,4 +1,3 @@
-//új ver. ubuntu
 
 package bankszamla;
 
