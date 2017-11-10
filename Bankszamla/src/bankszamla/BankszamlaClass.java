@@ -1,4 +1,3 @@
-//fdghasdfhsadfh
 package bankszamla;
 
 import java.util.ArrayList;
